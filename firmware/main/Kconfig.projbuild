@@ -1,0 +1,11 @@
+menu "StickS3 v16"
+
+    config STICKS3_BLE_NAME
+        string "BLE advertised device name"
+        default "StickS3-Mic"
+
+    config STICKS3_OPUS_BITRATE
+        int "Opus bitrate (bps)"
+        default 24000
+
+endmenu

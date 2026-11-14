@@ -1,0 +1,6 @@
+# StickS3 v16 custom partitions. 8MB flash. app enlarged to 4MB for esp-sr AFE
+# + NimBLE stack. No "model" partition: AFE runs WebRTC-based NS/AGC/VAD.
+# Name,   Type, SubType, Offset,   Size,  Flags
+nvs,      data, nvs,     ,         0x6000,
+phy_init, data, phy,     ,         0x1000,
+factory,  app,  factory, ,         4M,

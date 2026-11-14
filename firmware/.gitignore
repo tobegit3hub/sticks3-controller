@@ -1,0 +1,22 @@
+# Build output
+build/
+
+# Component manager fetched dependencies
+managed_components/
+
+# Generated config (see sdkconfig.defaults)
+sdkconfig
+sdkconfig.old
+
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store

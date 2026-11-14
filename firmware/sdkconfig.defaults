@@ -1,0 +1,38 @@
+# StickS3 v16 permanent build config (reproducible). BLE-only: no WiFi, no
+# secrets needed. Audio streams over NimBLE GATT as Opus frames.
+
+# --- Bluetooth: BLE only (ESP32-S3 has no Classic), NimBLE host ---
+CONFIG_BT_ENABLED=y
+CONFIG_BT_NIMBLE_ENABLED=y
+CONFIG_BT_NIMBLE_ROLE_PERIPHERAL=y
+CONFIG_BT_NIMBLE_ROLE_BROADCASTER=y
+# Larger ATT MTU so one 60ms Opus frame fits in a single notification.
+CONFIG_BT_NIMBLE_ATT_PREFERRED_MTU=247
+# Room for a couple of characteristics + names.
+CONFIG_BT_NIMBLE_GATT_MAX_PROCS=8
+
+
+# --- Flash: board is 8MB ---
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="8MB"
+
+# --- PSRAM: board has 8MB octal PSRAM, needed for AFE ---
+CONFIG_ESP32S3_SPIRAM_SUPPORT=y
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_TYPE_AUTO=y
+
+# --- Partition table: custom, app 3MB for esp-sr, no model partition ---
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# --- esp-sr AFE: WebRTC-based NS + VAD, no wake word models ---
+CONFIG_SR_NSN_WEBRTC=y
+CONFIG_SR_VADN_WEBRTC=y
+
+# --- LCD/LVGL: enable the 28px font used for the REC/IDLE status label ---
+CONFIG_LV_FONT_MONTSERRAT_28=y
+# Custom zh14/zh10 fonts (lv_font_conv) are RLE-compressed, so LVGL must build
+# with compressed-font support enabled, otherwise every glyph renders blank.
+CONFIG_LV_USE_FONT_COMPRESSED=y
