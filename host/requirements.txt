@@ -1,0 +1,17 @@
+# v17 BLE client with cursor injection. Cross-platform: Windows / macOS / Linux.
+bleak>=0.21
+websockets>=10.0      # transcribe_server WebSocket interface for UI
+
+# Opus decode. opuslib-next-bundled ships a prebuilt libopus binary inside the
+# wheel (Win/Mac/Linux), so `pip install` alone works — no system opus, no manual
+# opus.dll. If it's unavailable, the code falls back to plain `opuslib` + a system
+# libopus (macOS: `brew install opus`; Windows: opus.dll on PATH).
+opuslib-next-bundled>=0.1.1
+opuslib>=3.0          # fallback binding (only used if opuslib_next missing)
+
+# Optional VAD (code falls back to RMS if missing). Use *-wheels fork: it ships
+# prebuilt wheels for Win/Mac/Linux (import name stays `webrtcvad`), so no VC++
+# build tools needed on Windows. Plain `webrtcvad` needs a C compiler on Windows.
+webrtcvad-wheels>=2.0.14
+pyperclip>=1.8        # clipboard for text injection (cross-platform)
+pynput>=1.7           # keystroke simulation (Cmd/Ctrl+V, Enter) — Win/Mac/Linux

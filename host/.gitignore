@@ -1,0 +1,20 @@
+# Build output
+build/
+
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated output (audio + transcripts written by transcribe_server.py)
+transcripts/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
